@@ -89,13 +89,13 @@
             bindings = <
         //  ____________                           ____________
         // |            |                         |            |
-		    &kp ESC         			           &kp LC(V)
+		    &kp ESC         			           &kp LC(C)
         // |____________|            O            |____________|
         // |            |                         |            |
-		    &mo BLUETOOTH			               &mkp MCLK
+		    &kp ENTER   			               &mkp MCLK
         // |____________|____________ ____________|____________|
         // |            |            |            |            |
-		    &mo F_SCRL	 &mkp LCLK    &mkp RCLK	   &kp LC(C)
+		    &mo F_SCRL	 &mkp LCLK    &mkp RCLK	   &kp LC(V)
         // |____________|____________|____________|____________|
 	                   /* Inner Buttons  */
 		            &trans &trans &trans
