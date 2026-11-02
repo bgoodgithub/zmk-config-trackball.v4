@@ -92,10 +92,10 @@
 		    &kp ESC         			           &kp LC(C)
         // |____________|            O            |____________|
         // |            |                         |            |
-		    &kp ENTER   			               &mkp MCLK
+		    &kp ENTER     			               &mo F_SCRL
         // |____________|____________ ____________|____________|
         // |            |            |            |            |
-		    &mo F_SCRL	 &mkp LCLK    &mkp RCLK	   &kp LC(V)
+		    &mkp MCLK	 &mkp RCLK    &mkp LCLK	   &kp LC(V)
         // |____________|____________|____________|____________|
 	                   /* Inner Buttons  */
 		            &trans &trans &trans
