@@ -19,8 +19,8 @@
 #define B_SCRL 5
 
 // Mouse speed increased
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 450  // default: 600 - original: 1000
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 8   // default: 10  - original: 15
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 200  // default: 600 - original: 1000
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 7   // default: 10  - original: 15
 //#include <dt-bindings/zmk/pointing.h>
 
 / {
