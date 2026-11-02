@@ -17,7 +17,6 @@
 #define BACK_LEFT 3
 #define F_SCRL 4
 #define B_SCRL 5
-#define BLUETOOTH
 
 // Mouse speed increased
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 700  // default: 600 - original: 1000
@@ -139,28 +138,8 @@
 	// It is detected in trackball_listener telling to switch from the pointing movement to scrolling.
 	// Need separate layers for orientation to implement 
  	// Layers 4, 5
-/* 4 */ F_SCRL      {bindings = <&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans>;};
-/* 5 */ B_SCRL      {bindings = <&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans>;};
-
-    // Bluetooth Layer
-        BLUETOOTH {
-            bindings = <
-        //  ____________                           ____________
-        // |            |                         |            |
-    		&trans	    			               &trans
-        // |____________|            O            |____________|
-        // |            |                         |            |
-	    	&trans	    			               &trans
-        // |____________|____________ ____________|____________|
-        // |            |            |            |            |
-		    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3
-        // |____________|____________|____________|____________|
-	                   /* Inner Buttons  */
-		            &trans &trans &trans
-               /* Orientation (Front/Backward)   Handiness L/R     */
-			&trans                 &trans
-            >;
-         };
+/* 4 */ F_SCRL      {bindings = <&trans &trans &trans &trans &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &trans &trans &trans &trans &trans>;};
+/* 5 */ B_SCRL      {bindings = <&trans &trans &trans &trans &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &trans &trans &trans &trans &trans>;};
 
         extra1 {status = "reserved";};
         extra2 {status = "reserved";};
