@@ -88,13 +88,13 @@
         BACK_RIGHT {
             bindings = <
         //  ____________                           ____________
-        // |            |                         |            |
-		    &kp ESC         			           &kp LC(C)
+        // |   Escape   |                         |Scroll Layer|
+		    &kp ESC         			           &mo F_SCRL
         // |____________|            O            |____________|
-        // |            |                         |            |
-		    &kp ENTER     			               &mo F_SCRL
+        // |   Enter    |                         |    Copy    |
+		    &kp ENTER     			               &kp LC(C)
         // |____________|____________ ____________|____________|
-        // |            |            |            |            |
+        // |Middle Click|Right Click | Left Click |   Paste    |
 		    &mkp MCLK	 &mkp RCLK    &mkp LCLK	   &kp LC(V)
         // |____________|____________|____________|____________|
 	                   /* Inner Buttons  */
