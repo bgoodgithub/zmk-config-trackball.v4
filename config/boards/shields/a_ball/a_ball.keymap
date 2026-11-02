@@ -15,12 +15,13 @@
 #define FRONT_LEFT 1
 #define BACK_RIGHT 2
 #define BACK_LEFT 3
-#define FRONT_SCROLL 4
-#define BACKWARD_SCROLL 5
+#define F_SCRL 4
+#define B_SCRL 5
+#define BLUETOOTH
 
 // Mouse speed increased
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 1000  // default: 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 15    // default: 10
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 700  // default: 600 - original: 1000
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 12   // default: 10  - original: 15
 //#include <dt-bindings/zmk/pointing.h>
 
 / {
@@ -44,10 +45,17 @@
 	// Layer 0
         FRONT_RIGHT {
             bindings = <
-		&mo FRONT_SCROLL				&mkp LCLK
-		&mkp MCLK					&mkp MCLK 				
-		&mkp RCLK	      &kp A    &kp B		&kp ESC
-               /* Orientation (Front/Backward)   Handiness L/R     */
+        //  ____________                           ____________
+        // |            |                         |            |
+		    &mo F_SCRL				               &mkp LCLK
+        // |____________|            O            |____________|
+        // |            |                         |            |
+		    &mkp MCLK					           &mkp MCLK
+        // |____________|____________ ____________|____________|
+        // |            |            |            |            |
+		    &mkp RCLK    &kp A        &kp B 	   &kp ESC
+        // |____________|____________|____________|____________|
+        /*   Orientation (Front/Backward)   Handiness L/R     */
    		  &bt BT_CLR  &bt BT_NXT   &studio_unlock	
 			/*&kp N1  &kp N2  &kp N3*/
                /* Orientation (Front/Backward)   Handiness L/R     */
@@ -59,9 +67,16 @@
 	// Layer 1
         FRONT_LEFT {
             bindings = <
-		&mkp LCLK 				&mo FRONT_SCROLL
-		&mkp MCLK				&mkp MCLK 				
-		&kp ESC      &kp C    &kp D		&mkp RCLK
+        //  ____________                           ____________
+        // |            |                         |            |
+		    &mkp LCLK 				               &mo F_SCRL
+        // |____________|            O            |____________|
+        // |            |                         |            |
+		    &mkp MCLK				               &mkp MCLK 				
+        // |____________|____________ ____________|____________|
+        // |            |            |            |            |
+            &kp ESC      &kp C        &kp D	       &mkp RCLK
+        // |____________|____________|____________|____________|
 	                   /* Inner Buttons  */
 		            &trans &trans &trans
                /* Orientation (Front/Backward)   Handiness L/R     */
@@ -70,12 +85,19 @@
         };
 
 
-	// Layer 2
+	// Layer 2 (This is the one that I use)
         BACK_RIGHT {
             bindings = <
-		&kp ESC         			&mkp RCLK		
-		&mkp MCLK  				&mkp MCLK	
-		&mkp LCLK 	&kp G    &kp H		&mo BACKWARD_SCROLL 
+        //  ____________                           ____________
+        // |            |                         |            |
+		    &kp ESC         			           &kp LC(C)
+        // |____________|            O            |____________|
+        // |            |                         |            |
+		    &mo BLUETOOTH			               &mkp MCLK
+        // |____________|____________ ____________|____________|
+        // |            |            |            |            |
+		    &mo F_SCRL	 &mkp LCLK    &mkp RCLK	   &kp LC(V)
+        // |____________|____________|____________|____________|
 	                   /* Inner Buttons  */
 		            &trans &trans &trans
                /* Orientation (Front/Backward)   Handiness L/R     */
@@ -86,9 +108,16 @@
 	// Layer 3
         BACK_LEFT {
             bindings = <
-		&mkp RCLK				&kp ESC
-		&mkp MCLK				&mkp MCLK 				
-		&mo BACKWARD_SCROLL     &kp E    &kp F	&mkp LCLK
+        //  ____________                           ____________
+        // |            |                         |            |
+    		&mkp RCLK				               &kp ESC
+        // |____________|            O            |____________|
+        // |            |                         |            |
+	    	&mkp MCLK				               &mkp MCLK
+        // |____________|____________ ____________|____________|
+        // |            |            |            |            |
+		    &mo B_SCRL   &kp E        &kp F	       &mkp LCLK
+        // |____________|____________|____________|____________|
 	                   /* Inner Buttons  */
 		            &trans &trans &trans
                /* Orientation (Front/Backward)   Handiness L/R     */
@@ -96,22 +125,42 @@
             >;
          };
  
-//   		 RC(0,5)    			    RC(0,2) 
-//		 RC(0,4)	/* Ball */	    RC(0,1)
-//	         RC(0,3)    RC(0,12)	RC(0,11)    RC(0,0) 
+//   		 RC(0,5)    			                RC(0,2) 
+//		     RC(0,4)	       /* Ball */	        RC(0,1)
+//	         RC(0,3)    RC(0,12)	    RC(0,11)    RC(0,0) 
 //                   /* Buttons on top of the middle deck */
 //  		       /*  BTReset BTSelect Unlock  */ 
-//                          RC(0,8) RC(0,7)  RC(0,6)        
-//               /* Slider switches on the bottom of the middle deck */                                                         /
+//                      RC(0,8) RC(0,7)  RC(0,6)        
+//      /* Slider switches on the bottom of the middle deck */
 //		/* Orientation (Front/Backward)   Handiness L/R     */
-//                       RC(0,10)        	     RC(0,9)              
+//                      RC(0,10)         RC(0,9)              
 
 	// Scroll layers do nothing by themselves, it is completely transparent.
 	// It is detected in trackball_listener telling to switch from the pointing movement to scrolling.
 	// Need separate layers for orientation to implement 
  	// Layers 4, 5
-/* 4 */ FRONT_SCROLL  	    {bindings = <&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans>;};
-/* 5 */ BACKWARD_SCROLL     {bindings = <&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans>;};
+/* 4 */ F_SCRL      {bindings = <&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans>;};
+/* 5 */ B_SCRL      {bindings = <&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans>;};
+
+    // Bluetooth Layer
+        BLUETOOTH {
+            bindings = <
+        //  ____________                           ____________
+        // |            |                         |            |
+    		&trans	    			               &trans
+        // |____________|            O            |____________|
+        // |            |                         |            |
+	    	&trans	    			               &trans
+        // |____________|____________ ____________|____________|
+        // |            |            |            |            |
+		    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3
+        // |____________|____________|____________|____________|
+	                   /* Inner Buttons  */
+		            &trans &trans &trans
+               /* Orientation (Front/Backward)   Handiness L/R     */
+			&trans                 &trans
+            >;
+         };
 
         extra1 {status = "reserved";};
         extra2 {status = "reserved";};
