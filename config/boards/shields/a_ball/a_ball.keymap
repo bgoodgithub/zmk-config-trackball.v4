@@ -19,7 +19,7 @@
 #define B_SCRL 5
 
 // Mouse speed increased
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 200  // default: 600 - original: 1000
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 500  // default: 600 - original: 1000
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 7   // default: 10  - original: 15
 //#include <dt-bindings/zmk/pointing.h>
 
@@ -27,35 +27,21 @@
     keymap {
         compatible = "zmk,keymap";
 
-//        map = <
-//   		 RC(0,2)    			     	RC(0,5)
-//		 RC(0,1)	/* Ball */	        RC(0,4)
-//	         RC(0,0)    RC(0,12)	RC(0,11)        RC(0,3)
-//                   /* Buttons on top of the middle deck */
-//  		       /*  BTReset BTSelect Unlock  */ 
-//                          RC(0,8) RC(0,7)  RC(0,6)        
-//               /* Slider switches on the bottom of the middle deck */
-//		/* Orientation (Front/Backwards)   Handiness L/R     */
-//                       RC(0,10)        	     RC(0,9)              
-//        >;
-
-// &mkp LCLK &mkp MCLK &mkp RCLK  &none
-
-	// Layer 0
+	// Layer 0 (This is the one that I use)
         FRONT_RIGHT {
             bindings = <
         //  ____________                           ____________
-        // |            |                         |            |
-		    &mo F_SCRL				               &mkp LCLK
+        // |Scroll Layer|                         |Scroll Layer|
+		    &mo F_SCRL				               &mo F_SCRL
         // |____________|            O            |____________|
-        // |            |                         |            |
-		    &mkp MCLK					           &mkp MCLK
+        // |   Enter    |                         |    Copy    |
+		    &kp ENTER		        	           &kp LC(C)
         // |____________|____________ ____________|____________|
-        // |            |            |            |            |
-		    &mkp RCLK    &kp A        &kp B 	   &kp ESC
+        // |Right Click |Middle Click| Left Click |   Paste    |
+		    &mkp RCLK    &mkp MCLK    &mkp LCLK    &kp LC(V)
         // |____________|____________|____________|____________|
         /*   Orientation (Front/Backward)   Handiness L/R     */
-   		  &bt BT_CLR  &bt BT_NXT   &studio_unlock	
+   		  &bt BT_CLR  &bt BT_NXT   &studio_unlock
 			/*&kp N1  &kp N2  &kp N3*/
                /* Orientation (Front/Backward)   Handiness L/R     */
 			&mo 2                   &mo 1
@@ -84,12 +70,12 @@
         };
 
 
-	// Layer 2 (This is the one that I use)
+	// Layer 2
         BACK_RIGHT {
             bindings = <
         //  ____________                           ____________
         // |   Escape   |                         |Scroll Layer|
-		    &kp ESC         			           &mo F_SCRL
+		    &kp ESC         			           &mo B_SCRL
         // |____________|            O            |____________|
         // |   Enter    |                         |    Copy    |
 		    &kp ENTER     			               &kp LC(C)
@@ -122,24 +108,14 @@
                /* Orientation (Front/Backward)   Handiness L/R     */
 			&trans                 &trans
             >;
-         };
- 
-//   		 RC(0,5)    			                RC(0,2) 
-//		     RC(0,4)	       /* Ball */	        RC(0,1)
-//	         RC(0,3)    RC(0,12)	    RC(0,11)    RC(0,0) 
-//                   /* Buttons on top of the middle deck */
-//  		       /*  BTReset BTSelect Unlock  */ 
-//                      RC(0,8) RC(0,7)  RC(0,6)        
-//      /* Slider switches on the bottom of the middle deck */
-//		/* Orientation (Front/Backward)   Handiness L/R     */
-//                      RC(0,10)         RC(0,9)              
+         };    
 
 	// Scroll layers do nothing by themselves, it is completely transparent.
 	// It is detected in trackball_listener telling to switch from the pointing movement to scrolling.
 	// Need separate layers for orientation to implement 
  	// Layers 4, 5
-/* 4 */ F_SCRL      {bindings = <&trans &trans &trans &trans &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &trans &trans &trans &trans &trans>;};
-/* 5 */ B_SCRL      {bindings = <&trans &trans &trans &trans &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &trans &trans &trans &trans &trans>;};
+/* 4 */ F_SCRL      {bindings = <&trans &trans &trans &trans &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 3 &bt BT_SEL 0 &trans &trans &trans &trans &trans>;};
+/* 5 */ B_SCRL      {bindings = <&trans &trans &trans &trans &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 3 &bt BT_SEL 0 &trans &trans &trans &trans &trans>;};
 
         extra1 {status = "reserved";};
         extra2 {status = "reserved";};
